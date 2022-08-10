@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../html/script/vue.min.js"></script>
+</head>
+<body>
+    <div id = "test1">
+        姓：<input type="text" placeholder="请输入" v-model="xing"><br>
+        名：<input type="text" placeholder="请输入" v-model="ming"><br>
+        姓名1(单向)：<input v-model="fullName1" type="text" placeholder="姓名" readonly="true"><br>
+        姓名2(单向)：<input v-model="fullName2" type="text" placeholder="姓名" readonly="true"><br>
+        姓名3(单向)：<input v-model="fullName3" type="text" placeholder="姓名" readonly="true"><br>
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:"#test1",
+            data:{
+                xing:"a",
+                ming:"b",
+                //fullName1:'A B'
+                fullName2:"aa"
+            },
+            computed:{
+                fullName1() { //计算属性的方法
+                    return this.xing + " " + this.ming
+                }
+            },
+            watch:{
+                xing:function(newVal,oldVal) {
+                   // alert(newVal+","+oldVal)
+                    this.fullName2 = newVal+","+oldVal
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
